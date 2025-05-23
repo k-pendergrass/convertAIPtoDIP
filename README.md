@@ -123,7 +123,7 @@ Creating a Python version for use across operating systems.
 
 ## Change Logs
 
-convertAIPtoDIP.bat version 1.0 is the first public release. Change logs are not available for internal beta versions. Going forward, change logs for new versions will be maintained in this space.
+convertAIPtoDIP.bat version 1.0.0 is the first public release. Change logs are not available for internal beta versions. Going forward, change logs for new versions will be maintained in this space.
 
 Version 1.1.0 -- Includes two bug fixes and one enhancement.
 
