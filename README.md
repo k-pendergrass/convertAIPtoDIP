@@ -110,6 +110,8 @@ convertAIPtoDIP.bat displays progress and error messages in Windows Terminal. Ba
 
 convertAIPtoDIP.bat logs the results of file deletion process to two sets of logs: [AIP-ID]_Deleted-Files.txt documents the files that the script successfully deleted from the AIP and [AIP-ID]_Deletion-Errors.txt logs any files that were not deleted. [AIP-ID]_Deleted-Files_RR-Only.txt and [AIP-ID]_Deletion-Errors_RR-Only.txt do the same, respectively, for deleting reading room delivery only files when providing remote access. The script names all files by replacing [AIP-ID] with your “AIPID” local variable. The script creates these files in the “documentation” directory.
 
+**NOTE:** Due to how the script checks for successful file deletion, in cases where a file path for deletion does not exist in the AIP (e.g., the path in the list contains a typo), the script will log the path in both the success and error logs (success because the file path does not exist in the AIP and error because the delete command prints an error when it cannot find the file). In all cases, the error log is the definitive log.
+
 
 ## Contributing to Development
 
@@ -122,6 +124,17 @@ Creating a Python version for use across operating systems.
 ## Change Logs
 
 convertAIPtoDIP.bat version 1.0 is the first public release. Change logs are not available for internal beta versions. Going forward, change logs for new versions will be maintained in this space.
+
+Version 1.1.0 -- Includes two bug fixes and one enhancement.
+
+Bug fix: Added quotation marks around all instances of the %AIPLocation% variable to handle spaces in the full path of the AIP directory.
+
+Bug fix: Removed the /s flag from the del command in the sections that delete files from the restricted file list and reading room only file list. The flag was included in error and results in unintended deletion of files with the same name nested in a lower directory. It also results in a script error when the del command deletes lower-nested files via the /s flag when those files are also in the file list(s) for deletion, as the file(s) no longer exist when the del command attempts to delete them.
+
+Enhancement: Changed the way the del command output gets logged in the sections that delete files from the restricted file list and reading room only file list. In version 1.0, the script relied on the standard output (stdout) and standard error (stderr) of the del command to populate the success and error logs. Version 1.1 more robustly confirms file deletion by first using the stderr of the del command and then independently checking for the existence of each file in the file list; if the file does not exist, the path is logged to the success log, if it does exist, it is logged to the error log.
+
+**NOTE:** In cases where a file path in a file list for deletion does not exist in the AIP (e.g., the path in the list contains a typo), the script will log the path in both the success and error logs (success because the file path does not exist in the AIP and error because the del command prints the path as stderr when it cannot find the file). In all cases, the error log is the definitive log.
+
 
 
 ## License
