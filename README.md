@@ -1,5 +1,9 @@
 # convertAIPtoDIP
 
+## Latest Release -- Version 1.1.0
+
+Download the latest release (convertAIPtoDIP_v1.1.bat) at [convertAIPtoDIP version 1.1.0](https://github.com/k-pendergrass/convertAIPtoDIP/releases/tag/v1.1.0). 
+
 ## Overview
 
 convertAIPtoDIP.bat is a Windows batch script that works with two optional file manifests to convert an Archival Information Package (AIP) organized as a BagIt bag into a Dissemination Information Package (DIP) by validating the BagIt bag, optionally deleting all restricted files found in the accompanying restricted files manifest and/or all files in the reading room delivery only manifest, removing the BagIt metadata files, removing any empty directories, adding a README file for users, and renaming the AIP directory with the DIP name.
